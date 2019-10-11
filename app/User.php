@@ -37,10 +37,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
+    //返回用户头像
     public function avatar()
     {
-        return "https://www.gravatar.com/avatar/". md5(strtolower($this->email)). "?d=retro&s=64";
+        return "https://www.gravatar.com/avatar/" . md5(strtolower($this->email)) . "?d=retro&s=64";
     }
 
     public function message()
