@@ -1912,7 +1912,8 @@ var ws = new WebSocket("ws://127.0.0.1:7272");
       messages: [],
       content: '',
       users: [],
-      user_id: ''
+      user_id: '' //chat_users: [],
+
     };
   },
   created: function created() {
@@ -1946,9 +1947,17 @@ var ws = new WebSocket("ws://127.0.0.1:7272");
 
           break;
 
+        case "login":
+          _this.messages.push(data.data);
+
+          break;
+
         case 'users':
           _this.users = data.data;
           break;
+        // case "chat_users":
+        //     this.chat_users = data.data;
+        //     break;
 
         case 'history':
           _this.messages = data.data;
@@ -37956,11 +37965,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("a", { staticClass: "btn btn-danger", attrs: { href: "?room_id=1" } }, [
-      _vm._v("吃货人生")
+      _vm._v("房间1")
     ]),
     _vm._v(" "),
     _c("a", { staticClass: "btn btn-primary", attrs: { href: "?room_id=2" } }, [
-      _vm._v("技术探讨")
+      _vm._v("房间2")
     ]),
     _vm._v(" "),
     _c("hr", { staticClass: "divider" }),
@@ -38009,7 +38018,9 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "col-md-4" }, [
         _c("div", { staticClass: "panel panel-default" }, [
-          _c("div", { staticClass: "panel-heading" }, [_vm._v("在线用户")]),
+          _c("div", { staticClass: "panel-heading" }, [
+            _vm._v("聊天室在线用户")
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "panel-body" }, [
             _c(

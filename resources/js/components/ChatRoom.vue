@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <a href="?room_id=1" class="btn btn-danger">吃货人生</a>
-        <a href="?room_id=2" class="btn btn-primary">技术探讨</a>
+        <a href="?room_id=1" class="btn btn-danger">房间1</a>
+        <a href="?room_id=2" class="btn btn-primary">房间2</a>
         <hr class="divider">
 
         <div class="row">
@@ -30,7 +30,7 @@
 
             <div class="col-md-4">
                 <div class="panel panel-default">
-                    <div class="panel-heading">在线用户</div>
+                    <div class="panel-heading">聊天室在线用户</div>
 
                     <div class="panel-body">
                         <ul class="list-group">
@@ -74,6 +74,8 @@
                 content: '',
                 users: [],
                 user_id: '',
+                //chat_users: [],
+
             }
         },
         created: function () {
@@ -96,12 +98,19 @@
                             $('.panel-body').animate({scrollTop: $('.messages').height()});
                         })
                         break;
+                    case "login":
+                        this.messages.push(data.data)
+                        break;
                     case 'users':
                         this.users = data.data;
                         break;
+                    // case "chat_users":
+                    //     this.chat_users = data.data;
+                    //     break;
                     case 'history':
                         this.messages = data.data;
                         break;
+
                     case 'logout':
                         this.$delete(this.users, data.client_id)
                         break;

@@ -21,4 +21,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/init', 'HomeController@init');
 Route::post('/say', 'HomeController@say');
-Route::get('/test', 'HomeController@users');
+Route::get('/test', 'HomeController@usersByGroup');
+

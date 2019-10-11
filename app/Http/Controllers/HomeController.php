@@ -53,7 +53,6 @@ class HomeController extends Controller
         Gateway::bindUid($client_id, $id);
         //当前用户进入一个房间
         Gateway::joinGroup($client_id, session('room_id'));
-
         Gateway::setSession($client_id, [
             'id' => Auth::user()->id,
             'avatar' => Auth::user()->avatar(),
@@ -65,16 +64,16 @@ class HomeController extends Controller
     public function login()
     {
         $data = [
-            'type' => 'say',
+            'type' => 'login',
             'data' => [
                 'avatar' => Auth::user()->avatar(),
                 'name' => Auth::user()->name,
-                'content' => '进入了聊天室',
+                'content' => '进入了这个聊天室',
                 'time' => date("Y-m-d H:i:s", time())
             ],
         ];
 
-        Gateway::sendToAll(json_encode($data));
+        Gateway::sendToGroup(session('room_id'), json_encode($data));
     }
 
     public function say(Request $request)
@@ -100,7 +99,7 @@ class HomeController extends Controller
             return;
         }
 
-        Gateway::sendToAll(json_encode($data));
+        Gateway::sendToGroup(session('room_id'), json_encode($data));
 
         Message::query()->create([
             'user_id' => Auth::id(),
@@ -143,26 +142,60 @@ class HomeController extends Controller
     public function users()
     {
         $session = Gateway::getAllClientSessions();
-        $value = [];
 
-        //不能对自己私聊
-        foreach ($session as $s) {
-            if ($s['id'] == Auth::id()) {
-                unset($s);
-                continue;
-            }
+//        $value = [];
+//
+//        foreach ($session as $s) {
+//            $value[] = $s;
+//        }
+//
+//        //针对同一浏览器登录出现多个相同用户
+//        $users = array_unique($value, SORT_REGULAR);
 
-            $value[] = $s;
+        $data = [
+            'type' => 'users',
+            'data' => $session,
+        ];
+
+        Gateway::sendToGroup(session('room_id'), json_encode($data));
+
+        //获取当前房间在线的用户
+        $uids = Gateway::getUidListByGroup(session('room_id'));
+
+        $users = [];
+
+        foreach ($uids as $uid) {
+            $user = User::query()->find($uid);
+            $user['avatar'] = $user->avatar();
+            $users[] = $user;
         }
 
-        //针对同一浏览器登录出现多个相同用户
-        $users = array_unique($value, SORT_REGULAR);
+        $session_data = [
+            'type' => 'users',
+            'data' => $users,
+        ];
+
+        Gateway::sendToUid(Auth::id(), json_encode($session_data));
+    }
+
+    public function usersByGroup()
+    {
+        $uids = Gateway::getUidListByGroup(session('room_id'));
+        $users = [];
+
+        foreach ($uids as $uid) {
+            $user = User::query()->find($uid);
+            $user['avatar'] = $user->avatar();
+            $users[] = $user;
+        }
 
         $data = [
             'type' => 'users',
             'data' => $users,
         ];
 
-        Gateway::sendToAll(json_encode($data));
     }
+
+
+
 }
