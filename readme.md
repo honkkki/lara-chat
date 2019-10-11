@@ -6,6 +6,12 @@
 
 - 利用websocket实现的简单聊天室，支持多房间聊天和私聊。
 
+- 安装组件
+```
+composer install
+npm install
+```
+
 - 迁移数据库
 ```
 php artisan migrate
@@ -19,4 +25,7 @@ php start.php start
 - 项目目录启动
 ```
 npm run watch-poll
+```
+```
+php artisan serve
 ```
