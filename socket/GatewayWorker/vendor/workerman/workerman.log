@@ -1,0 +1,67 @@
+2019-10-10 10:26:36 pid:30543 Workerman[start.php] start in DEBUG mode
+2019-10-10 10:33:05 pid:30543 Workerman[start.php] stopping ...
+2019-10-10 10:33:06 pid:30543 Workerman[start.php] has been stopped
+2019-10-10 10:33:07 pid:229 Workerman[start.php] start in DEBUG mode
+2019-10-10 10:35:00 pid:229 Workerman[start.php] stopping ...
+2019-10-10 10:35:00 pid:229 Workerman[start.php] has been stopped
+2019-10-10 10:35:01 pid:974 Workerman[start.php] start in DEBUG mode
+2019-10-10 10:40:17 pid:974 Workerman[start.php] stopping ...
+2019-10-10 10:40:17 pid:974 Workerman[start.php] has been stopped
+2019-10-10 10:40:30 pid:3144 Workerman[start.php] start in DEBUG mode
+2019-10-10 12:03:06 pid:3144 Workerman[start.php] stopping ...
+2019-10-10 12:03:06 pid:3144 Workerman[start.php] has been stopped
+2019-10-10 17:43:10 pid:6491 Workerman[start.php] start in DEBUG mode
+2019-10-10 17:56:04 pid:6498 Exception: You can't send(array) to client, you need to convert it to a string.  in /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Protocols/Websocket.php:236
+Stack trace:
+#0 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Connection/TcpConnection.php(344): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/gateway-worker/src/Gateway.php(605): Workerman\Connection\TcpConnection->send(Array, false)
+#2 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Connection/TcpConnection.php(658): GatewayWorker\Gateway->onWorkerMessage(Object(Workerman\Connection\TcpConnection), Array)
+#3 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Events/Select.php(294): Workerman\Connection\TcpConnection->baseRead(Resource id #105)
+#4 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Worker.php(2382): Workerman\Events\Select->loop()
+#5 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/gateway-worker/src/Gateway.php(276): Workerman\Worker->run()
+#6 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Worker.php(1490): GatewayWorker\Gateway->run()
+#7 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Worker.php(1320): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\Gateway))
+#8 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Worker.php(1294): Workerman\Worker::forkWorkersForLinux()
+#9 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Worker.php(509): Workerman\Worker::forkWorkers()
+#10 /mnt/c/linux/laravel_worker/socket/GatewayWorker/start.php(37): Workerman\Worker::runAll()
+#11 {main}
+2019-10-10 17:56:04 pid:6498 Worker[6498] process terminated
+2019-10-10 17:56:04 pid:6491 worker[YourAppGateway:6498] exit with status 64000
+2019-10-10 17:57:33 pid:6499 Exception: You can't send(array) to client, you need to convert it to a string.  in /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Protocols/Websocket.php:236
+Stack trace:
+#0 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Connection/TcpConnection.php(344): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/gateway-worker/src/Gateway.php(605): Workerman\Connection\TcpConnection->send(Array, false)
+#2 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Connection/TcpConnection.php(658): GatewayWorker\Gateway->onWorkerMessage(Object(Workerman\Connection\TcpConnection), Array)
+#3 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Events/Select.php(294): Workerman\Connection\TcpConnection->baseRead(Resource id #71)
+#4 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Worker.php(2382): Workerman\Events\Select->loop()
+#5 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/gateway-worker/src/Gateway.php(276): Workerman\Worker->run()
+#6 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Worker.php(1490): GatewayWorker\Gateway->run()
+#7 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Worker.php(1320): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\Gateway))
+#8 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Worker.php(1294): Workerman\Worker::forkWorkersForLinux()
+#9 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Worker.php(509): Workerman\Worker::forkWorkers()
+#10 /mnt/c/linux/laravel_worker/socket/GatewayWorker/start.php(37): Workerman\Worker::runAll()
+#11 {main}
+2019-10-10 17:57:33 pid:6499 Worker[6499] process terminated
+2019-10-10 17:57:33 pid:6491 worker[YourAppGateway:6499] exit with status 64000
+2019-10-10 17:58:29 pid:6491 Workerman[start.php] stopping ...
+2019-10-10 17:58:29 pid:6491 Workerman[start.php] has been stopped
+2019-10-10 17:58:30 pid:11958 Workerman[start.php] start in DEBUG mode
+2019-10-10 17:58:42 pid:11963 Exception: You can't send(array) to client, you need to convert it to a string.  in /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Protocols/Websocket.php:236
+Stack trace:
+#0 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Connection/TcpConnection.php(344): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/gateway-worker/src/Gateway.php(605): Workerman\Connection\TcpConnection->send(Array, false)
+#2 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Connection/TcpConnection.php(658): GatewayWorker\Gateway->onWorkerMessage(Object(Workerman\Connection\TcpConnection), Array)
+#3 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Events/Select.php(294): Workerman\Connection\TcpConnection->baseRead(Resource id #51)
+#4 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Worker.php(2382): Workerman\Events\Select->loop()
+#5 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/gateway-worker/src/Gateway.php(276): Workerman\Worker->run()
+#6 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Worker.php(1490): GatewayWorker\Gateway->run()
+#7 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Worker.php(1320): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\Gateway))
+#8 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Worker.php(1294): Workerman\Worker::forkWorkersForLinux()
+#9 /mnt/c/linux/laravel_worker/socket/GatewayWorker/vendor/workerman/workerman/Worker.php(509): Workerman\Worker::forkWorkers()
+#10 /mnt/c/linux/laravel_worker/socket/GatewayWorker/start.php(37): Workerman\Worker::runAll()
+#11 {main}
+2019-10-10 17:58:42 pid:11963 Worker[11963] process terminated
+2019-10-10 17:58:42 pid:11958 worker[YourAppGateway:11963] exit with status 64000
+2019-10-10 18:15:09 pid:11958 Workerman[start.php] stopping ...
+2019-10-10 18:15:09 pid:11958 Workerman[start.php] has been stopped
+2019-10-11 09:14:10 pid:2196 Workerman[start.php] start in DEBUG mode
