@@ -11,7 +11,7 @@
 php artisan migrate
 ```
 
-- 进入socket下workman的文件夹启动
+- 进入socket下GatewayWorker的文件夹启动
 ```
 php start.php start
 ```
