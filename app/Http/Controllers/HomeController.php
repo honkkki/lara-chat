@@ -124,7 +124,7 @@ class HomeController extends Controller
             'type' => 'history',
         ];
 
-        $messages = Message::query()->where('room_id', session('room_id'))->orderBy('id', 'desc')->limit(5)->get();
+        $messages = Message::query()->with(['user'])->where('room_id', session('room_id'))->orderBy('id', 'desc')->limit(5)->get();
 
         //map重新组装数据返回
         $data['data'] = $messages->map(function ($item, $key) {
