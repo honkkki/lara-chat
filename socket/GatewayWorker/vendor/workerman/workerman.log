@@ -71,5 +71,4 @@ Stack trace:
 2019-10-11 16:35:08 pid:12283 Workerman[start.php] stopping ...
 2019-10-11 16:35:08 pid:12283 Workerman[start.php] has been stopped
 2019-10-11 16:35:09 pid:891 Workerman[start.php] start in DEBUG mode
-2019-10-11 18:10:03 pid:891 Workerman[start.php] stopping ...
-2019-10-11 18:10:04 pid:891 Workerman[start.php] has been stopped
+
