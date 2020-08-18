@@ -17,9 +17,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth:web'], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::post('/init', 'HomeController@init');
 
-Route::post('/init', 'HomeController@init');
-Route::post('/say', 'HomeController@say');
-Route::get('/test', 'HomeController@usersByGroup');
+    Route::group(['middleware' => 'throttle:60,1'], function () {
+        Route::post('/say', 'HomeController@say');
+    });
+
+    Route::get('/test', 'HomeController@usersByGroup');
+});
+
 

@@ -66,7 +66,7 @@
 </template>
 
 <script>
-    let ws = new WebSocket("ws://127.0.0.1:7272");
+    let ws = new WebSocket("ws://larachat.honkki.xyz:7272");
     export default {
         data() {
             return {
@@ -125,8 +125,17 @@
                     alert("请输入聊天内容")
                     return;
                 }
-                axios.post('/say', {content: this.content, user_id: this.user_id})
+                axios.post('/say', {content: this.content, user_id: this.user_id}).then(
+                    res => {
+                        if (res.data.code === 429) {
+                            alert('您输入得太快了')
+                        }
+                    }
+                )
+
                 this.content = ''
+
+
             }
         }
     }

@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use GatewayClient\Gateway;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -17,9 +18,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-
-        Gateway::$registerAddress = '127.0.0.1:1238';
+        Gateway::$registerAddress = '127.0.0.1:1239';
     }
 
     /**
