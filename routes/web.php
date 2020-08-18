@@ -15,7 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('user/upload', 'UserController@upload');
+
+
 Auth::routes();
+
+Route::get('/vue', 'UserController@vue')->name('vue');
+
 
 Route::group(['middleware' => 'auth:web'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
@@ -26,6 +32,8 @@ Route::group(['middleware' => 'auth:web'], function () {
     });
 
     Route::get('/test', 'HomeController@usersByGroup');
+    Route::get('user/profile', 'UserController@profile')->name('user/profile');
+    Route::post('user/store', 'UserController@store');
 });
 
 

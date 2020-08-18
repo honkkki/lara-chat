@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>聊天室</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -45,7 +45,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 60px;
             }
 
             .links > a {
@@ -61,6 +61,12 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .author {
+                font-weight: 500;
+                margin-top: 100px;
+                color: #9561e2;
+            }
         </style>
     </head>
     <body>
@@ -68,12 +74,12 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">聊天室</a>
+                        <a href="{{ url('/home?room_id=1') }}">进入聊天室</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">登录</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">注册</a>
                         @endif
                     @endauth
                 </div>
@@ -81,19 +87,17 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    欢迎使用
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="author">
+                    created by honki
                 </div>
             </div>
+
         </div>
+
     </body>
+
+
 </html>

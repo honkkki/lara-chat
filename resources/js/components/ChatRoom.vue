@@ -45,9 +45,9 @@
             </div>
         </div>
 
-        <form @submit.prevent="onSubmit">
+        <form @submit.prevent="onSubmit" @keyup.enter="onSubmit">
             <div class="form-group">
-                <label for="user_id">私聊</label>
+                <label for="user_id">发送给</label>
 
                 <select class="form-control" id="user_id" v-model="user_id">
                     <option value="">所有人</option>
@@ -56,7 +56,7 @@
             </div>
 
             <div class="form-group">
-                <label for="content">内容</label>
+                <label for="content">内容(回车可快速发送)</label>
                 <textarea class="form-control" rows="3" id="content" v-model="content"></textarea>
             </div>
 
@@ -109,6 +109,7 @@
                     //     break;
                     case 'history':
                         this.messages = data.data;
+                        this.messages = this.messages.reverse()
                         break;
 
                     case 'logout':

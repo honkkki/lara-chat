@@ -123,10 +123,10 @@ class HomeController extends Controller
             'type' => 'history',
         ];
 
-        //预加载
+        // 预加载
         $messages = Message::query()->with(['user'])->where('room_id', session('room_id'))->orderBy('id', 'desc')->limit(5)->get();
 
-        //map重新组装数据返回
+        // map重新组装数据返回
         $data['data'] = $messages->map(function ($item, $key) {
             return [
                 'avatar' => $item->user->avatar(),
