@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">个人信息</div>
 
-                    <div class="card-body">
+                    <div class="card-body" v-loading="listLoading">
 
                         <div class="form-group row">
                             <label for="avatar" class="col-md-4 col-form-label text-md-right">头像</label>
@@ -13,7 +13,7 @@
                             <div>
                                 <el-upload
                                     class="avatar-uploader"
-                                    action="http://larachat.honkki.xyz/user/upload/"
+                                    :action="actionUrl"
                                     :show-file-list="false"
                                     :on-success="handleAvatarSuccess"
                                     :before-upload="beforeAvatarUpload">
@@ -36,7 +36,6 @@
 
                         </div>
 
-
                     </div>
                 </div>
             </div>
@@ -58,62 +57,71 @@ export default {
 
     mounted() {
         console.log('Component mounted.')
+        this.actionUrl = this.$api_url + '/user/upload/'
+        this.userInfo()
 
     },
 
     methods: {
         userInfo() {
-
+            this.listLoading = true
+            axios.get(this.$api_url + '/userInfo')
+                .then(res => {
+                    this.imageUrl = this.$api_url + res.data.data.avatar
+                    this.realUrl = res.data.data.avatar
+                    this.username = res.data.data.name
+                    this.listLoading = false
+                })
         },
 
         handleAvatarSuccess(res, file) {
             this.imageUrl = URL.createObjectURL(file.raw);
-            console.log(this.imageUrl)
-            console.log(res)
             this.realUrl = res
 
         },
 
         beforeAvatarUpload(file) {
-            // const isJPG = file.type === 'image/jpeg';
-            // const isLt2M = file.size / 1024 / 1024 < 2;
-            //
-            // if (!isJPG) {
-            //     this.$message.error('上传头像图片只能是 JPG 格式!');
-            // }
-            // if (!isLt2M) {
-            //     this.$message.error('上传头像图片大小不能超过 2MB!');
-            // }
-            // return isJPG && isLt2M;
+            const typeCheck = file.type === 'image/jpeg' || file.type === 'image/png';
 
+            if (!typeCheck) {
+                this.type.error('上传头像图片只能是JPG或PNG格式!');
+            }
+
+            return typeCheck;
         },
 
         handler() {
-            // if(!this.newForm.name1 || !this.newForm.level_type || this.newForm.product_category_id === '' || !this.newForm.icon || !this.newForm.weight) {
-            //   this.$message({
-            //     type: "error",
-            //     message: "信息未填完!"
-            //   });
-            //   return
-            // }
-            axios.post('http://larachat.honkki.xyz/user/store', {
+            if(!this.username || !this.realUrl) {
+              this.$message({
+                type: "error",
+                message: "请填写完整信息!"
+              });
+              return
+            }
+            axios.post(this.$api_url + '/user/store', {
                 avatar: this.realUrl,
                 name: this.username
             }).then(
                 res => {
-                    console.log(res)
                     if (res.data.code !== 0) {
                         this.$message({
                             type: 'error',
-                            message: '提交失败'
+                            message: '提交失败',
+                            duration: 1000,
                         })
                     } else {
                         this.$message({
                             type: 'success',
-                            message: '提交成功'
+                            message: '提交成功',
+                            duration: 1000,
+                            onClose: () => {
+                                // this.userInfo()
+                                location.reload()
+                            }
                         })
                     }
-                }
+                },
+
             )
         },
 

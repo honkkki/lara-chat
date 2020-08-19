@@ -54,7 +54,7 @@ class HomeController extends Controller
         Gateway::joinGroup($client_id, session('room_id'));
         Gateway::setSession($client_id, [
             'id' => Auth::user()->id,
-            'avatar' => Auth::user()->avatar(),
+            'avatar' => Auth::user()->avatar,
             'name' => Auth::user()->name,
         ]);
     }
@@ -65,7 +65,7 @@ class HomeController extends Controller
         $data = [
             'type' => 'login',
             'data' => [
-                'avatar' => Auth::user()->avatar(),
+                'avatar' => Auth::user()->avatar,
                 'name' => Auth::user()->name,
                 'content' => '进入了这个聊天室',
                 'time' => date("Y-m-d H:i:s", time())
@@ -80,7 +80,7 @@ class HomeController extends Controller
         $data = [
             'type' => 'say',
             'data' => [
-                'avatar' => Auth::user()->avatar(),
+                'avatar' => Auth::user()->avatar,
                 'name' => Auth::user()->name,
                 'content' => $request->input('content'),
                 'time' => date("Y-m-d H:i:s", time()),
@@ -129,7 +129,7 @@ class HomeController extends Controller
         // map重新组装数据返回
         $data['data'] = $messages->map(function ($item, $key) {
             return [
-                'avatar' => $item->user->avatar(),
+                'avatar' => $item->user->avatar,
                 'name' => $item->user->name,
                 'content' => $item->content,
                 'time' => $item->created_at->format("Y-m-d H:i:s"),
@@ -166,7 +166,7 @@ class HomeController extends Controller
 
         foreach ($uids as $uid) {
             $user = User::query()->find($uid);
-            $user['avatar'] = $user->avatar();
+            $user['avatar'] = $user->avatar;
             $users[] = $user;
         }
 
@@ -185,7 +185,7 @@ class HomeController extends Controller
 
         foreach ($uids as $uid) {
             $user = User::query()->find($uid);
-            $user['avatar'] = $user->avatar();
+            $user['avatar'] = $user->avatar;
             $users[] = $user;
         }
 

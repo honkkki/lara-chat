@@ -19,7 +19,7 @@
                                 <div class="media-body">
                                     <p class="time">{{message.time}}</p>
                                     <h4 class="media-heading">{{message.name}}</h4>
-                                    {{message.content}}
+                                    说:{{message.content}}
                                 </div>
                             </div>
                         </div>
@@ -45,15 +45,17 @@
             </div>
         </div>
 
-        <form @submit.prevent="onSubmit" @keyup.enter="onSubmit">
-            <div class="form-group">
-                <label for="user_id">发送给</label>
+        <hr class="divider">
 
-                <select class="form-control" id="user_id" v-model="user_id">
-                    <option value="">所有人</option>
-                    <option :value="user.id" v-for="user in users">{{user.name}}</option>
-                </select>
-            </div>
+        <form @submit.prevent="onSubmit" @keyup.enter="onSubmit">
+<!--            <div class="form-group">-->
+<!--                <label for="user_id">发送给</label>-->
+
+<!--                <select class="form-control" id="user_id" v-model="user_id">-->
+<!--                    <option value="">所有人</option>-->
+<!--                    <option :value="user.id" v-for="user in users">{{user.name}}</option>-->
+<!--                </select>-->
+<!--            </div>-->
 
             <div class="form-group">
                 <label for="content">内容(回车可快速发送)</label>
@@ -66,7 +68,8 @@
 </template>
 
 <script>
-    let ws = new WebSocket("ws://larachat.honkki.xyz:7272");
+    import { ws_url } from '../config'
+    let ws = new WebSocket(ws_url);
     export default {
         data() {
             return {

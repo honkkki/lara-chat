@@ -31,6 +31,12 @@ class UserController extends Controller
         return response_success();
     }
 
+    public function userInfo()
+    {
+        $user = auth('web')->user();
+        return response_success($user);
+    }
+
 
 
 }

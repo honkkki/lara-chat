@@ -10,7 +10,10 @@ window.Vue = require('vue');
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import { api_url } from './config'
 Vue.use(ElementUI);
+
+Vue.prototype.$api_url = api_url
 
 /**
  * The following block of code may be used to automatically register your

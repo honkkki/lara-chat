@@ -1,6 +1,6 @@
 # lara-chat
 :rainbow:
-
+🎨
 
 - build with laravel/workerman
 
@@ -12,10 +12,7 @@ composer install
 npm install
 ```
 
-- 迁移数据库
-```
-php artisan migrate
-```
+- 数据库文件在根目录sql中
 
 - 进入socket下GatewayWorker的文件夹启动
 ```
@@ -26,6 +23,4 @@ php start.php start
 ```
 npm run watch-poll
 ```
-```
-php artisan serve
-```
+

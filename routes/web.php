@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth:web'], function () {
 
     Route::get('/test', 'HomeController@usersByGroup');
     Route::get('user/profile', 'UserController@profile')->name('user/profile');
+    Route::get('userInfo', 'UserController@userInfo');
     Route::post('user/store', 'UserController@store');
 });
 
