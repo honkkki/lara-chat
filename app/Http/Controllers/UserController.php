@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redis;
 
 class UserController extends Controller
 {
@@ -36,6 +37,27 @@ class UserController extends Controller
         $user = auth('web')->user();
         return response_success($user);
     }
+
+    public function redis()
+    {
+        $user = auth('web')->user();
+
+        $redis = Redis::connection();
+        $redis->set('user:' . $user['id'], json_encode($user));
+        return $redis->get('user:' . $user['id']);
+    }
+
+    public function array()
+    {
+        $arr = [1,2,3];
+
+        $arr = collect($arr)->map(function ($items, $key) {
+            return $items * 2;
+        });
+
+        return $arr;
+    }
+
 
 
 

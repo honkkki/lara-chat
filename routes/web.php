@@ -16,11 +16,12 @@ Route::get('/', function () {
 });
 
 Route::post('user/upload', 'UserController@upload');
+Route::get('redis', 'UserController@redis');
+Route::get('array', 'UserController@array');
 
-
-Auth::routes();
-
-Route::get('/vue', 'UserController@vue')->name('vue');
+Route::group(['middleware' => 'throttle:30,1'], function () {
+    Auth::routes();
+});
 
 
 Route::group(['middleware' => 'auth:web'], function () {

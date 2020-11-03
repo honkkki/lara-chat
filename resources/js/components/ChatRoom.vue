@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <a href="?room_id=1" class="btn btn-danger">房间1</a>
-        <a href="?room_id=2" class="btn btn-primary">房间2</a>
+        <a href="?room_id=1" class="btn btn-danger">音乐</a>
+        <a href="?room_id=2" class="btn btn-primary">游戏</a>
         <hr class="divider">
 
         <div class="row">
@@ -19,7 +19,7 @@
                                 <div class="media-body">
                                     <p class="time">{{message.time}}</p>
                                     <h4 class="media-heading">{{message.name}}</h4>
-                                    说:{{message.content}}
+                                    : {{message.content}}
                                 </div>
                             </div>
                         </div>
