@@ -24,3 +24,6 @@ php start.php start
 npm run watch-poll
 ```
 
+Thanks
+---
+![](https://raw.githubusercontent.com/honkkki/lara-chat/3690a14439c87c4bd34e9c7f03bf6c867c375f57/jetbrains.svg)
