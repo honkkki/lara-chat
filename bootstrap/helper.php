@@ -25,7 +25,7 @@ function response_json($code, $msg = null, $data = null)
  */
 function response_success($data = null)
 {
-    return response_json(0, null, $data);
+    return response_json(0, 'success', $data);
 }
 
 /**

@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::post('user/upload', 'UserController@upload');
 Route::get('redis', 'UserController@redis');
+Route::get('queue', 'UserController@queue');
 Route::get('array', 'UserController@array');
 
 Route::group(['middleware' => 'throttle:30,1'], function () {

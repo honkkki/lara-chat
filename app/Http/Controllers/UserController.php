@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Order\OrderShipped;
+use App\Jobs\SendMail;
+use App\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
@@ -40,11 +43,22 @@ class UserController extends Controller
 
     public function redis()
     {
-        $user = auth('web')->user();
-
         $redis = Redis::connection();
-        $redis->set('user:' . $user['id'], json_encode($user));
-        return $redis->get('user:' . $user['id']);
+        $redis->set('user', 'jisoo');
+        return $redis->get('user');
+    }
+
+    // 模拟队列处理
+    public function queue()
+    {
+        // 处理完注册的逻辑后发送邮件
+//        SendMail::dispatch('send mail');
+
+        // 事件监听
+        $content = '发货啦';
+        event(new OrderShipped($content));
+
+        return response_success();
     }
 
     public function array()

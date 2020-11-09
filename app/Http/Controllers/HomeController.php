@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Message;
 use App\User;
-use Illuminate\Http\Request;
 use GatewayClient\Gateway;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -30,10 +29,10 @@ class HomeController extends Controller
     {
         $room_id = $request->input('room_id') ? $request->input('room_id') : 1;
         session()->put('room_id', $room_id);
-
         return view('home');
     }
 
+    // 数据初始化
     public function init(Request $request)
     {
         $this->bind($request);
@@ -195,7 +194,6 @@ class HomeController extends Controller
         ];
 
     }
-
 
 
 }
